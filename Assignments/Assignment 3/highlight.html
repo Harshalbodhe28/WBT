@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Bold Words</title>
+    <style>
+        #highlightLink {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .highlight {
+            color: rgb(4, 223, 4);
+        }
+    </style>
+</head>
+<body>
+    <p id="highlightLink">On mouse over here bold words of the following paragraph will be highlighted</p>
+    
+    <p>
+        We have just started <b>this</b> section for the users (<b>beginner</b> to intermediate) who 
+        <b>want</b> to work with <b>various</b> JavaScript <b>problems</b> and write scripts online to 
+        <b>test</b> their JavaScript <b>skill</b>.
+    </p>
+
+    <script>
+        const highlightLink = document.getElementById('highlightLink');
+        const boldWords = document.querySelectorAll('p b');
+
+        highlightLink.addEventListener('mouseover', () => {
+            boldWords.forEach(word => {
+                word.classList.add('highlight');
+            });
+        });
+
+        highlightLink.addEventListener('mouseout', () => {
+            boldWords.forEach(word => {
+                word.classList.remove('highlight');
+            });
+        });
+    </script>
+</body>
+</html>

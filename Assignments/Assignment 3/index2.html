@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Values</title>
+</head>
+<body>
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+
+        <label for="contactNo">Contact No.:</label>
+        <input type="text" id="contactNo" name="contactNo"><br><br>
+
+        <label for="emailId">Email ID:</label>
+        <input type="email" id="emailId" name="emailId"><br><br>
+
+        <button type="button" onclick="getFormValues()">Submit</button>
+    </form>
+
+    <h2>Form Values:</h2>
+    <p id="formValues"></p>
+
+    <script>
+        function getFormValues() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const contactNo = document.getElementById('contactNo').value;
+            const emailId = document.getElementById('emailId').value;
+
+            const formValues = `
+                First Name: ${firstName}<br>
+                Last Name: ${lastName}<br>
+                Contact No.: ${contactNo}<br>
+                Email ID: ${emailId}
+            `;
+
+            document.getElementById('formValues').innerHTML = formValues;
+        }
+    </script>
+</body>
+</html>
