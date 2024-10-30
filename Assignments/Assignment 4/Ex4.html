@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulated Network Request with Error Handling</title>
+  <style>
+    /* General styling for the page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Styling the container */
+    .container {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      border-radius: 8px;
+      padding: 20px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #4a90e2;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* Button styling */
+    button {
+      background-color: #4a90e2;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+
+    /* Styling for the response and error output */
+    #responseOutput {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      color: #4a90e2;
+      font-weight: bold;
+      word-wrap: break-word;
+    }
+
+    .error {
+      color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Simulated Network Request with Error Handling</h1>
+    <p>Click the button to simulate a network request.</p>
+    <button onclick="simulateRequest()">Fetch Data</button>
+
+    <h3>Response:</h3>
+    <div id="responseOutput">Waiting for response...</div>
+  </div>
+
+  <script>
+    // Define the fetchData function with error handling
+    function fetchData(url, callback) {
+      console.log(`Fetching data from: ${url}`);
+
+      // Simulate a network delay of 2 seconds
+      setTimeout(() => {
+        // Simulate a random error
+        const isError = Math.random() > 0.5;
+
+        if (isError) {
+          const errorMessage = `Error fetching data from ${url}`;
+          callback(errorMessage, null);  // Pass error to callback
+        } else {
+          const response = `Response from ${url}`;
+          callback(null, response);  // Pass response to callback
+        }
+      }, 2000);
+    }
+
+    // Function to initiate the simulated network request
+    function simulateRequest() {
+      const url = "https://api.example.com/data";
+
+      // Clear previous response and show waiting message
+      const responseOutput = document.getElementById("responseOutput");
+      responseOutput.textContent = "Fetching data...";
+
+      // Call fetchData and handle the response or error in the callback
+      fetchData(url, (error, response) => {
+        if (error) {
+          // Display error message in red
+          responseOutput.innerHTML = `<span class="error">${error}</span>`;
+          console.error(error);
+        } else {
+          // Display the response
+          responseOutput.textContent = response;
+          console.log(response);
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

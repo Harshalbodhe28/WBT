@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chained Callbacks with Data Processing</title>
+  <style>
+    /* Basic styling for the page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Styling the container */
+    .container {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      border-radius: 8px;
+      padding: 20px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #4a90e2;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* Button styling */
+    button {
+      background-color: #4a90e2;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+
+    /* Styling for output sections */
+    #responseOutput, #processedOutput {
+      margin-top: 15px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      font-weight: bold;
+      color: #4a90e2;
+      word-wrap: break-word;
+    }
+
+    /* Error message styling */
+    .error {
+      color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Data Fetch and Process Simulation</h1>
+    <p>Click the button to simulate a network request and data processing.</p>
+    <button onclick="startFetchAndProcess()">Fetch and Process Data</button>
+
+    <h3>Response:</h3>
+    <div id="responseOutput">Waiting for response...</div>
+
+    <h3>Processed Result:</h3>
+    <div id="processedOutput">Waiting for processed result...</div>
+  </div>
+
+  <script>
+    // Define fetchData with error handling
+    function fetchData(url, callback) {
+      console.log(`Fetching data from: ${url}`);
+
+      // Simulate a network delay of 2 seconds
+      setTimeout(() => {
+        // Randomly simulate success or error
+        const isError = Math.random() > 0.5;
+
+        if (isError) {
+          const errorMessage = `Error fetching data from ${url}`;
+          callback(errorMessage, null);  // Pass error to callback
+        } else {
+          const response = `Response from ${url}`;
+          callback(null, response);  // Pass response to callback
+        }
+      }, 2000);
+    }
+
+    // Define processData to modify and log the response data
+    function processData(data, callback) {
+      console.log("Processing data...");
+
+      // Simulate a processing delay
+      setTimeout(() => {
+        const processedData = `${data} - Processed successfully`;
+        callback(processedData);
+      }, 1500);
+    }
+
+    // Function to start the fetch and process sequence
+    function startFetchAndProcess() {
+      const url = "https://api.example.com/data";
+
+      // Clear previous outputs and show initial waiting messages
+      document.getElementById("responseOutput").textContent = "Fetching data...";
+      document.getElementById("processedOutput").textContent = "Waiting for processed result...";
+
+      // Fetch data and handle response/error
+      fetchData(url, (error, response) => {
+        if (error) {
+          // Display error in response output section
+          document.getElementById("responseOutput").innerHTML = `<span class="error">${error}</span>`;
+          console.error(error);
+        } else {
+          // Display fetched response
+          document.getElementById("responseOutput").textContent = response;
+          console.log(response);
+
+          // Process the fetched data
+          processData(response, (processedResult) => {
+            // Display the processed result
+            document.getElementById("processedOutput").textContent = processedResult;
+            console.log(processedResult);
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
