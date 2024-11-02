@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .logo {
+            width: 100px;
+        }
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            border: 2px solid #f0f0f0;
+        }
+        .card {
+            margin: 20px 0;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .total-price {
+            font-size: 1.5em;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="text-center p-4 bg-primary text-white">
+        <img src="lodo.png" class="logo" alt="Logo">
+        <h1>Online Shopping Cart</h1>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="mt-4">Items in Cart</h2>
+                <div class="card p-3">
+                    <div class="cart-item d-flex align-items-center">
+                        <img src="lodo.png" alt="Product">
+                        <div class="ml-3">
+                            <h5>Item Name</h5>
+                            <p class="text-muted">Price: $10</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="cart-item d-flex align-items-center">
+                        <img src="lodo.png" alt="Product">
+                        <div class="ml-3">
+                            <h5>Item Name</h5>
+                            <p class="text-muted">Price: $15</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3 mt-4">
+                    <h2>Total</h2>
+                    <p class="total-price">$25</p>
+                    <button class="btn btn-primary btn-block">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
